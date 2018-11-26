@@ -23,3 +23,12 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [] Using injection and static JSON files to make testing downstream applications easier
 - [] Battle testing for scalability
 - [] Deploying to GCP
+
+
+-----
+
+Questions for Kamil
+- [] Why does the sockets on the client throw 404's `http://localhost:3000/socket.io/?EIO=3&transport=polling&t=MTEQhYW `
+- [] How to best implement auth0
+- [] How to best implement cache busting on a write
+- [] How to best fall back to in memory if redis connect fails
