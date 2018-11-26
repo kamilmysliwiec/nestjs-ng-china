@@ -7,7 +7,8 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
     * Post
     * Delete
     * Patch
-- [] file transfer 
+- [] file upload 
+- [x] file download
 - [] Passthrough 
 - [x] Adding a healthcheck
 - [] Adding app version to healthcheck
@@ -16,7 +17,8 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [] Authorization adding role based permissions
 - [] Setting up field level permissions
 - [] Adding Websockets for streaming logs from frontend
-- [] Adding Logging & Monitoring
+- [x] Adding Logging (using the default logger)
+- [] Adding Monitoring
 - [] Adding a GraphQL endpoint for some page level requests from your frontend
 - [] Adding Redis & in memory caching to speed up your server ( redis primary, in memory fallback)
 - [] Containerizing your server

@@ -7,9 +7,10 @@ import {AuthModule} from './auth/auth.module';
 import {UsersModule} from './users/users.module';
 import { UiLogsModule } from './ui-logs/ui-logs.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
+import { FileDownloadModule } from './file-download/file-download.module';
 
 @Module({
-  imports: [HeroesModule, AuthModule, UsersModule, UiLogsModule, FileUploadModule],
+  imports: [HeroesModule, AuthModule, UsersModule, UiLogsModule, FileUploadModule, FileDownloadModule],
   controllers: [AppController, HealthcheckController],
   providers: [AppService],
 })

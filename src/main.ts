@@ -1,14 +1,11 @@
-import * as newRelic from 'newrelic';
+import 'newrelic';
 import {NestFactory} from '@nestjs/core';
 import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
 import {AppModule} from './app.module';
 import * as compression from 'compression';
 import * as express from 'express';
 
-const NR = newRelic;
-
 async function bootstrap() {
-
   const app = await NestFactory.create(AppModule);
   app.use(compression());
 
