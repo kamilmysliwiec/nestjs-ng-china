@@ -9,19 +9,20 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
     * Patch
 - [] file upload 
 - [x] file download
-- [] Passthrough 
+- [x] Passthrough Image
+- [x] Passthrough JSON
 - [x] Adding a healthcheck
-- [] Adding app version to healthcheck
+- [x] Adding app version to healthcheck
 - [x] Adding Compression to your output
 - [] Adding Authentication to the endpoints as a whole
 - [] Authorization adding role based permissions
 - [] Setting up field level permissions
 - [] Adding Websockets for streaming logs from frontend
 - [x] Adding Logging (using the default logger)
-- [] Adding Monitoring
+- [] Adding Monitoring `new relic added but not seeing stats`
 - [] Adding a GraphQL endpoint for some page level requests from your frontend
-- [] Adding Redis & in memory caching to speed up your server ( redis primary, in memory fallback)
-- [] Containerizing your server
+- [] Adding Redis & in memory caching to speed up your server ( redis primary, in memory fallback) `how to prove redis / memory is working?`
+- [] Containerizing your server `this still needs work but have the docker files`
 - [] Using injection and static JSON files to make testing downstream applications easier
 - [] Battle testing for scalability
 - [] Deploying to GCP
