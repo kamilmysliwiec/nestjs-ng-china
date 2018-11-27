@@ -2,7 +2,7 @@ import {Controller, FileInterceptor, FilesInterceptor, HttpStatus, Post, Res, Up
 import * as path from 'path';
 import * as fs from 'fs';
 import {Response} from 'express';
-import {ApiConsumes, ApiImplicitFile, ApiResponse} from '@nestjs/swagger';
+import {ApiConsumes, ApiImplicitFile, ApiResponse, ApiOperation} from '@nestjs/swagger';
 
 @Controller('file-upload')
 export class FileUploadController {
@@ -10,6 +10,7 @@ export class FileUploadController {
   @ApiConsumes('multipart/form-data')
   @ApiImplicitFile({name: 'file', required: true, description: 'User Uploaded File'})
   @ApiResponse({status: HttpStatus.ACCEPTED, description: 'The File has been saved'})
+  @ApiOperation({ title: 'Uploads file to the server' })
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file, @Res() res: Response) {
     fs.createWriteStream(path.join(`static_files/${file.originalname}`));
@@ -20,6 +21,7 @@ export class FileUploadController {
   @ApiConsumes('multipart/form-data')
   @ApiImplicitFile({name: 'file upload', required: true, description: 'User Uploaded File'})
   @ApiResponse({status: HttpStatus.ACCEPTED, description: 'The Files have been saved'})
+  @ApiOperation({ title: 'Uploads multiple files to the server' })
   @UseInterceptors(FilesInterceptor('files'))
   uploadFiles(@UploadedFiles() files, @Res() res: Response) {
     // TODO: This should handle duplicate file errors
