@@ -9,9 +9,27 @@ import {UsersModule} from './users/users.module';
 import {UiLogsModule} from './ui-logs/ui-logs.module';
 import {FileUploadModule} from './file-upload/file-upload.module';
 import {FileDownloadModule} from './file-download/file-download.module';
+import {join} from 'path';
+import {CatsModule} from './cats/cats.module';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
-  imports: [HeroesModule, AuthModule, UsersModule, UiLogsModule, FileUploadModule, FileDownloadModule,
+  imports: [
+    CatsModule,
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+      installSubscriptionHandlers: true,
+      definitions: {
+        path: join(process.cwd(), 'src/graphql.schema.ts'),
+        outputAs: 'class',
+      },
+    }),
+    HeroesModule,
+    AuthModule,
+    UsersModule,
+    UiLogsModule,
+    FileUploadModule,
+    FileDownloadModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',

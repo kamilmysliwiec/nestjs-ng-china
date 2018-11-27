@@ -3,11 +3,11 @@ Adventures in Node and Nest
 Our story begins after you’ve created your Angular frontend: Up until this point you’ve been using mock data and now you’re wondering “How in the world do I create the backend to power this application?” and “How can I leverage my existing Angular and TypeScript skills to do it”.  In this talk we will go through setting up your perfect companion Backend. A Node server with Nest then extending the functionality to be ready for production:
 
 - [x] Creating some new REST endpoints JSON, 
-    - [*] Get All
-    - [*] Get
-    - [*] Post
-    - [*] Delete
-    - [*] Patch
+    - [x] Get All
+    - [x] Get
+    - [x] Post
+    - [x] Delete
+    - [x] Patch
 - [x] file upload 
 - [x] file download
 - [x] Passthrough Image
@@ -23,7 +23,7 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [] Adding Websockets for streaming logs from frontend
 - [x] Adding Logging (using the default logger)
 - [] Adding Monitoring `new relic added but not seeing stats`
-- [] Adding a GraphQL endpoint for some page level requests from your frontend
+- [x] Adding a GraphQL endpoint for some page level requests from your frontend
 - [] Adding Redis & in memory caching to speed up your server ( redis primary, in memory fallback) `how to prove redis / memory is working?`
 - [] Containerizing your server `this still needs work but have the docker files`
 - [] Using injection and static JSON files to make testing downstream applications easier
