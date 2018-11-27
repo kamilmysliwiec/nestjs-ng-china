@@ -19,7 +19,7 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [x] Persisting data in a database
 - [x] Adding Authentication to the endpoints as a whole
 - [x] Authorization adding role based permissions
-- [] Setting up field level permissions
+- [x] Setting up field level permissions
 - [] Adding Websockets for streaming logs from frontend
 - [x] Adding Logging (using the default logger)
 - [] Adding Monitoring `new relic added but not seeing stats`

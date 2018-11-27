@@ -18,15 +18,12 @@ export class HeroesService {
     return await this.heroRepository.find();
   }
 
-  async createHero(createHeroDto: CreateHeroDto): Promise<Guid> {
-    const newGuid: Guid = Guid.create();
-    const guidString = newGuid.toJSON().value;
-    await this.heroRepository.save(new Hero(createHeroDto, guidString));
-    return newGuid.toJSON().value;
+  async createHero(createHeroDto: CreateHeroDto): Promise<any> {
+    return await this.heroRepository.save(new Hero(createHeroDto));
   }
 
   async getHero(id: string): Promise<Hero> | null {
-    const fetchedHero = await this.heroRepository.findOne(id);
+    const fetchedHero = await this.heroRepository.findOne({id});
     if (typeof fetchedHero !== 'undefined') {
       return fetchedHero;
     } else {

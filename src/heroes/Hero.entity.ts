@@ -1,11 +1,13 @@
-import {Column, Entity, PrimaryColumn} from 'typeorm';
+import {Column, Entity, PrimaryColumn, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
-export abstract class HeroEntity {
-  @PrimaryColumn()
+export class HeroEntity {
+  @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({length: 500})
+  @PrimaryColumn({length: 500})
   name: string;
 
+  @Column()
+  hideout: string;
 }

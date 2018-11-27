@@ -1,13 +1,18 @@
-import {CreateHeroDto} from './CreateHeroDto';
-import {HeroEntity} from './Hero.entity';
+import {Exclude, Expose} from 'class-transformer';
 
-export class Hero implements HeroEntity {
+@Exclude()
+export class Hero {
+  @Expose()
   id: string;
+
+  @Expose()
   name: string;
 
-  constructor(createHeroDto: CreateHeroDto, guid: string) {
-    this.id = guid;
-    this.name = createHeroDto.name;
+  @Expose({groups: ['admin']})
+  hideout: string;
+
+  constructor(partial: Partial<Hero>) {
+    Object.assign(this, partial);
   }
 
 }

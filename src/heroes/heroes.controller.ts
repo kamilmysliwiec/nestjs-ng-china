@@ -1,14 +1,30 @@
-import {Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Res, UseGuards} from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+  UseInterceptors
+} from '@nestjs/common';
 import {Response} from 'express';
 import {CreateHeroDto} from './CreateHeroDto';
 import {HeroesService} from './heroes.service';
 import {Hero} from './Hero';
-import { AuthGuard } from '@nestjs/passport';
+import {AuthGuard} from '@nestjs/passport';
 import {RolesGuard} from '../common/guards/roles.guard';
 import {Roles} from '../common/decorators/roles.decorator';
+import {plainToClass} from 'class-transformer';
 
 // TODO: This should not have to have jwt since we set it as our default strategy
 @UseGuards(AuthGuard('jwt'), RolesGuard)
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('heroes')
 export class HeroesController {
   constructor(private heroesService: HeroesService) {
@@ -21,10 +37,16 @@ export class HeroesController {
   }
 
   @Get('/:id')
-  async get(@Param('id')id: string, @Res() res: Response) { // TODO: How can we type the return on this?
+  async get(@Param('id')id: string, @Req() req, @Res() res: Response) { // TODO: How can we type the return on this?
     const fetchedHero = await this.heroesService.getHero(id);
+    const roles = [];
+    req.user.roles.forEach((role: any) => roles.push(role.name));
+
     if (fetchedHero) {
-      res.status(HttpStatus.OK).json(fetchedHero);
+      // TODO: How do I get the reflector to pass into here
+      // new GetRolesFromRequest();
+      const hero = plainToClass(Hero, fetchedHero, {groups: roles});
+      res.status(HttpStatus.OK).json(hero);
     } else {
       res.status(HttpStatus.NOT_FOUND).json({error: 'Hero Not Found'});
     }
@@ -32,9 +54,8 @@ export class HeroesController {
 
   @Post('/')
   async create(@Body() createHeroDto: CreateHeroDto, @Res() res: Response) {
-    const newHeroGuid = await this.heroesService.createHero(createHeroDto);
-    res.status(HttpStatus.OK);
-    res.send({id: newHeroGuid});
+    await this.heroesService.createHero(createHeroDto);
+    res.sendStatus(HttpStatus.OK);
   }
 
   @Patch('/')
@@ -46,7 +67,6 @@ export class HeroesController {
     }
   }
 
-  // TODO: Wrap this in a permission so only Admin users can delete
   @Roles('admin')
   @Delete('/:id')
   async delete(@Param('id')id: string, @Res() res: Response) {
