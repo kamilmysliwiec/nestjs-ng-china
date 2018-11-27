@@ -29,7 +29,6 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [] Using injection and static JSON files to make testing downstream applications easier
 - [x] Battle testing for scalability
 - [] Deploying to GCP
-GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY reallylongpassword1234;
 
 
 -----

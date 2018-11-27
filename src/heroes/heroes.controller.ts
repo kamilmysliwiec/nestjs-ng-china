@@ -1,9 +1,12 @@
-import {Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Res} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Res, UseGuards} from '@nestjs/common';
 import {Response} from 'express';
 import {CreateHeroDto} from './CreateHeroDto';
 import {HeroesService} from './heroes.service';
 import {Hero} from './Hero';
+import { AuthGuard } from '@nestjs/passport';
 
+// TODO: This should not have to have jwt since we set it as our default strategy
+@UseGuards(AuthGuard('jwt'))
 @Controller('heroes')
 export class HeroesController {
   constructor(private heroesService: HeroesService) {

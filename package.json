@@ -34,6 +34,7 @@
     "class-validator": "^0.9.1",
     "compression": "^1.7.3",
     "guid-typescript": "^1.0.9",
+    "hamlet": "^0.3.3",
     "mysql": "^2.16.0",
     "newrelic": "^4.11.0",
     "passport": "^0.4.0",
