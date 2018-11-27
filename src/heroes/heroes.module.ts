@@ -3,7 +3,7 @@ import {HeroesController} from './heroes.controller';
 import * as redisStore from 'cache-manager-redis-store';
 import {HeroesService} from './heroes.service';
 import {HeroEntity} from './Hero.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import {TypeOrmModule} from '@nestjs/typeorm';
 
 @Module({
   controllers: [HeroesController],

@@ -17,8 +17,8 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [x] Adding Compression to your output
 - [x] Validate the shape of the request object
 - [x] Persisting data in a database
-- [] Adding Authentication to the endpoints as a whole
-- [] Authorization adding role based permissions
+- [x] Adding Authentication to the endpoints as a whole
+- [x] Authorization adding role based permissions
 - [] Setting up field level permissions
 - [] Adding Websockets for streaming logs from frontend
 - [x] Adding Logging (using the default logger)
@@ -35,6 +35,5 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 
 Questions for Kamil
 - [] Why does the sockets on the client throw 404's `http://localhost:3000/socket.io/?EIO=3&transport=polling&t=MTEQhYW `
-- [] How to best implement auth0
 - [] How to best implement cache busting on a write
 - [] How to best fall back to in memory if redis connect fails

@@ -4,9 +4,11 @@ import {CreateHeroDto} from './CreateHeroDto';
 import {HeroesService} from './heroes.service';
 import {Hero} from './Hero';
 import { AuthGuard } from '@nestjs/passport';
+import {RolesGuard} from '../common/guards/roles.guard';
+import {Roles} from '../common/decorators/roles.decorator';
 
 // TODO: This should not have to have jwt since we set it as our default strategy
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('heroes')
 export class HeroesController {
   constructor(private heroesService: HeroesService) {
@@ -45,6 +47,7 @@ export class HeroesController {
   }
 
   // TODO: Wrap this in a permission so only Admin users can delete
+  @Roles('admin')
   @Delete('/:id')
   async delete(@Param('id')id: string, @Res() res: Response) {
     const deletedHero = await this.heroesService.deleteHero(id);
