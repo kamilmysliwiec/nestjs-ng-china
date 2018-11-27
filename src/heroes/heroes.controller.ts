@@ -1,9 +1,11 @@
 import {
   Body,
+  Catch,
   ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
+  HttpException,
   HttpStatus,
   Param,
   Patch,
@@ -11,7 +13,7 @@ import {
   Req,
   Res,
   UseGuards,
-  UseInterceptors
+  UseInterceptors,
 } from '@nestjs/common';
 import {Response} from 'express';
 import {CreateHeroDto} from './CreateHeroDto';
@@ -24,6 +26,7 @@ import {plainToClass} from 'class-transformer';
 
 // TODO: This should not have to have jwt since we set it as our default strategy
 @UseGuards(AuthGuard('jwt'), RolesGuard)
+@Catch()
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('heroes')
 export class HeroesController {
@@ -37,7 +40,7 @@ export class HeroesController {
   }
 
   @Get('/:id')
-  async get(@Param('id')id: string, @Req() req, @Res() res: Response) { // TODO: How can we type the return on this?
+  async get(@Param('id')id: string, @Req() req) { // TODO: How can we type the return on this?
     const fetchedHero = await this.heroesService.getHero(id);
     const roles = [];
     req.user.roles.forEach((role: any) => roles.push(role.name));
@@ -45,10 +48,9 @@ export class HeroesController {
     if (fetchedHero) {
       // TODO: How do I get the reflector to pass into here
       // new GetRolesFromRequest();
-      const hero = plainToClass(Hero, fetchedHero, {groups: roles});
-      res.status(HttpStatus.OK).json(hero);
+      return plainToClass(Hero, fetchedHero, {groups: roles});
     } else {
-      res.status(HttpStatus.NOT_FOUND).json({error: 'Hero Not Found'});
+      throw new HttpException({error: 'Hero Not Found'}, HttpStatus.NOT_FOUND);
     }
   }
 
