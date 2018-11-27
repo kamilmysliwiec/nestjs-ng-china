@@ -1,26 +1,26 @@
-import {Body, Controller, Get, HttpStatus, Param, Post, Res} from '@nestjs/common';
+import {Body, Catch, Controller, Get, HttpException, HttpStatus, Param, Post} from '@nestjs/common';
 import {UsersService} from './users.service';
-import {Response} from 'express';
 import {CreateUserDto} from './UserDto';
 
+@Catch()
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {
   }
 
   @Get('/:username')
-  async getUser(@Param('username')username: string, @Res() res: Response) {
+  async getUser(@Param('username')username: string) {
     const fetchedUser = await this.usersService.findByUsername(username);
     if (fetchedUser) {
-      res.status(HttpStatus.OK).json(fetchedUser);
+      return fetchedUser;
     } else {
-      res.status(HttpStatus.NOT_FOUND).json({error: 'User Not Found'});
+      throw new HttpException({error: 'User Not Found'}, HttpStatus.NOT_FOUND);
     }
   }
 
   @Post('/')
-  async create(@Body() userDto: CreateUserDto, @Res() res: Response) {
+  async create(@Body() userDto: CreateUserDto) {
     await this.usersService.createUser(userDto);
-    res.sendStatus(HttpStatus.OK);
+    return HttpStatus.OK;
   }
 }

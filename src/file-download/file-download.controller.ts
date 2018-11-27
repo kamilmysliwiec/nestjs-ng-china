@@ -1,10 +1,11 @@
-import {Controller, Get, HttpStatus, Logger, Param, Res} from '@nestjs/common';
+import {Catch, Controller, Get, HttpStatus, Logger, Param, Res} from '@nestjs/common';
 import {Response} from 'express';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
 
+@Catch()
 @Controller('file-download')
 export class FileDownloadController {
   @Get('/:file_name')

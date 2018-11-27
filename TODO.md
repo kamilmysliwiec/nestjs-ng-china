@@ -37,3 +37,4 @@ Questions for Kamil
 - [] Why does the sockets on the client throw 404's `http://localhost:3000/socket.io/?EIO=3&transport=polling&t=MTEQhYW `
 - [] How to best implement cache busting on a write
 - [] How to best fall back to in memory if redis connect fails
+- [] How to do a response.pipe in the `return style` without using `@Res()`

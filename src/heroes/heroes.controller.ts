@@ -11,11 +11,9 @@ import {
   Patch,
   Post,
   Req,
-  Res,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import {Response} from 'express';
 import {CreateHeroDto} from './CreateHeroDto';
 import {HeroesService} from './heroes.service';
 import {Hero} from './Hero';
@@ -55,28 +53,28 @@ export class HeroesController {
   }
 
   @Post('/')
-  async create(@Body() createHeroDto: CreateHeroDto, @Res() res: Response) {
+  async create(@Body() createHeroDto: CreateHeroDto) {
     await this.heroesService.createHero(createHeroDto);
-    res.sendStatus(HttpStatus.OK);
+    return HttpStatus.OK;
   }
 
   @Patch('/')
-  async update(@Body() hero, @Res() res: Response) {
+  async update(@Body() hero) {
     if (await this.heroesService.updateHero(hero)) {
-      res.sendStatus(HttpStatus.ACCEPTED);
+      return HttpStatus.ACCEPTED;
     } else {
-      res.status(HttpStatus.BAD_REQUEST).json({error: 'Not a valid GUID'});
+      throw new HttpException({error: 'Not a valid GUID'}, HttpStatus.NOT_FOUND);
     }
   }
 
   @Roles('admin')
   @Delete('/:id')
-  async delete(@Param('id')id: string, @Res() res: Response) {
+  async delete(@Param('id')id: string) {
     const deletedHero = await this.heroesService.deleteHero(id);
     if (deletedHero) {
-      res.sendStatus(HttpStatus.NO_CONTENT);
+      return HttpStatus.NO_CONTENT;
     } else {
-      res.status(HttpStatus.NOT_FOUND).json({error: 'Nothing to Delete'});
+      throw new HttpException({error: 'Nothing to Delete'}, HttpStatus.NOT_FOUND);
     }
   }
 }

@@ -42,7 +42,7 @@ export class HeroesService {
   }
 
   async deleteHero(id: string) {
-    const result = await this.heroRepository.delete(id);
+    const result = await this.heroRepository.delete({id});
     if (result.raw.affectedRows > 0) {
       return true;
     } else {

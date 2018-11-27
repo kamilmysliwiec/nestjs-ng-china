@@ -12,9 +12,9 @@ export class FileUploadController {
   @ApiResponse({status: HttpStatus.ACCEPTED, description: 'The File has been saved'})
   @ApiOperation({ title: 'Uploads file to the server' })
   @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file, @Res() res: Response) {
+  uploadFile(@UploadedFile() file) {
     fs.createWriteStream(path.join(`static_files/${file.originalname}`));
-    res.sendStatus(HttpStatus.ACCEPTED);
+    return HttpStatus.ACCEPTED;
   }
 
   @Post('multiple')
@@ -23,11 +23,11 @@ export class FileUploadController {
   @ApiResponse({status: HttpStatus.ACCEPTED, description: 'The Files have been saved'})
   @ApiOperation({ title: 'Uploads multiple files to the server' })
   @UseInterceptors(FilesInterceptor('files'))
-  uploadFiles(@UploadedFiles() files, @Res() res: Response) {
+  uploadFiles(@UploadedFiles() files) {
     // TODO: This should handle duplicate file errors
     files.forEach((file) => {
       fs.createWriteStream(path.join(`static_files/${file.originalname}`));
     });
-    res.sendStatus(HttpStatus.ACCEPTED);
+    return HttpStatus.ACCEPTED;
   }
 }
