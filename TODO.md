@@ -8,7 +8,7 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
     - [*] Post
     - [*] Delete
     - [*] Patch
-- [] file upload 
+- [x] file upload 
 - [x] file download
 - [x] Passthrough Image
 - [x] Passthrough JSON
@@ -16,7 +16,7 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [x] Adding app version to healthcheck
 - [x] Adding Compression to your output
 - [x] Validate the shape of the request object
-- [] Persisting data in a database
+- [x] Persisting data in a database
 - [] Adding Authentication to the endpoints as a whole
 - [] Authorization adding role based permissions
 - [] Setting up field level permissions
@@ -27,7 +27,7 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [] Adding Redis & in memory caching to speed up your server ( redis primary, in memory fallback) `how to prove redis / memory is working?`
 - [] Containerizing your server `this still needs work but have the docker files`
 - [] Using injection and static JSON files to make testing downstream applications easier
-- [] Battle testing for scalability
+- [x] Battle testing for scalability
 - [] Deploying to GCP
 GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY reallylongpassword1234;
 
