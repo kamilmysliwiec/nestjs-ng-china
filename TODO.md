@@ -16,6 +16,7 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [x] Adding app version to healthcheck
 - [x] Adding Compression to your output
 - [x] Validate the shape of the request object
+- [] Persisting data in a database
 - [] Adding Authentication to the endpoints as a whole
 - [] Authorization adding role based permissions
 - [] Setting up field level permissions
@@ -28,6 +29,7 @@ Our story begins after you’ve created your Angular frontend: Up until this poi
 - [] Using injection and static JSON files to make testing downstream applications easier
 - [] Battle testing for scalability
 - [] Deploying to GCP
+GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY reallylongpassword1234;
 
 
 -----

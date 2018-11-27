@@ -1,13 +1,13 @@
-import {Guid} from 'guid-typescript';
 import {CreateHeroDto} from './CreateHeroDto';
+import {HeroEntity} from './Hero.entity';
 
-export class Hero {
+export class Hero implements HeroEntity {
   id: string;
   name: string;
 
-  constructor(createHeroDto: CreateHeroDto, guid: Guid) {
-     this.id = guid.toJSON().value;
-     this.name = createHeroDto.name;
+  constructor(createHeroDto: CreateHeroDto, guid: string) {
+    this.id = guid;
+    this.name = createHeroDto.name;
   }
 
 }
