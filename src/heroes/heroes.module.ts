@@ -1,6 +1,7 @@
 import {CacheModule, Module} from '@nestjs/common';
 import {HeroesController} from './heroes.controller';
 import * as redisStore from 'cache-manager-redis-store';
+import {HeroesService} from './heroes.service';
 
 @Module({
   controllers: [HeroesController],
@@ -12,6 +13,7 @@ import * as redisStore from 'cache-manager-redis-store';
       port: 6379,
     }),
   ],
+  providers: [HeroesService],
 })
 export class HeroesModule {
   constructor() {
